@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 아기 첫 생일을 축하해주세요</title>
+    <style>
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e57373;
+            margin-bottom: 5px;
+        }
+        .header p {
+            font-size: 16px;
+            color: #757575;
+            margin-top: 0;
+        }
+        .baby-info {
+            margin: 30px 0;
+            line-height: 1.8;
+        }
+        .baby-photo {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            object-fit: cover;
+        }
+        
+        /* 슬라이드쇼 스타일 */
+        .slideshow-container {
+            max-width: 300px;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .mySlides {
+            display: none;
+        }
+        
+        .mySlides.active {
+            display: block;
+        }
+        
+        /* 이전, 다음 버튼 */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.3);
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev {
+            left: 0;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.6);
+        }
+        
+        /* 인디케이터 점 */
+        .dot-container {
+            text-align: center;
+            margin: 8px 0;
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .active-dot, .dot:hover {
+            background-color: #e57373;
+        }
+        .event-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin: 30px 0;
+        }
+        .event-info h2 {
+            font-size: 18px;
+            color: #e57373;
+            margin-bottom: 15px;
+        }
+        .map-container {
+            margin: 30px 0;
+        }
+        .google-map {
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .contact {
+            margin: 30px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #e57373;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 10px 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #ef5350;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #9e9e9e;
+        }
+        .decoration {
+            margin: 20px 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="decoration">🎂 👶 🎉</div>
+            <h1>우리 아기 첫 생일을 축하해주세요</h1>
+            <p>소중한 분들을 아이의 첫 생일에 초대합니다</p>
+        </div>
+        
+        <div class="baby-info">
+            <div class="slideshow-container">
+                <div class="mySlides active">
+                    <img src="/api/placeholder/300/300" alt="아기 사진 1" class="baby-photo">
+                </div>
+                
+                <div class="mySlides">
+                    <img src="/api/placeholder/300/300" alt="아기 사진 2" class="baby-photo">
+                </div>
+                
+                <div class="mySlides">
+                    <img src="/api/placeholder/300/300" alt="아기 사진 3" class="baby-photo">
+                </div>
+                
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            </div>
+            
+            <div class="dot-container">
+                <span class="dot active-dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+            
+            <p><strong>김아기</strong>의 첫 번째 생일을 맞이하여<br>
+            소중한 분들을 초대합니다.<br>
+            함께 축하해 주시면 감사하겠습니다.</p>
+        </div>
+        
+        <div class="event-info">
+            <h2>돌잔치 안내</h2>
+            <p><strong>날짜:</strong> 2025년 5월 25일 토요일</p>
+            <p><strong>시간:</strong> 오후 12시 30분</p>
+            <p><strong>장소:</strong> 행복한 웨딩홀 2층 크리스탈홀</p>
+            <p><strong>주소:</strong> 경기도 수원시 영통구 월드컵로 123</p>
+        </div>
+        
+        <div class="map-container">
+            <h2>오시는 길</h2>
+            <div id="map" class="google-map"></div>
+            <p>지하철 2호선 월드컵경기장역 3번 출구에서 도보 5분</p>
+            
+            <!-- Google Maps API 스크립트 -->
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+        </div>
+        
+        <div class="contact">
+            <a href="tel:010-1234-5678" class="btn">엄마에게 전화하기</a>
+            <a href="tel:010-8765-4321" class="btn">아빠에게 전화하기</a>
+        </div>
+        
+        <div class="footer">
+            <p>소중한 선물보다 따뜻한 마음과 축하 인사가 더 큰 기쁨이 됩니다.<br>
+            참석 여부를 미리 알려주시면 감사하겠습니다.</p>
+        </div>
+    </div>
+
+    <!-- 구글맵 API 추가 -->
+    <script>
+        // 슬라이드쇼 관련 변수
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("mySlides");
+        const dots = document.getElementsByClassName("dot");
+        
+        // 슬라이드 이동 함수
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+        
+        // 현재 슬라이드 선택 함수
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+        
+        // 슬라이드 표시 함수
+        function showSlide(n) {
+            // 슬라이드 인덱스 범위 조정
+            if (n >= slides.length) {slideIndex = 0}
+            if (n < 0) {slideIndex = slides.length - 1}
+            
+            // 모든 슬라이드 숨기기
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                dots[i].classList.remove("active-dot");
+            }
+            
+            // 현재 슬라이드와 도트 활성화
+            slides[slideIndex].classList.add("active");
+            dots[slideIndex].classList.add("active-dot");
+        }
+        
+        // 자동 슬라이드 설정 (5초마다 변경)
+        setInterval(function() {
+            changeSlide(1);
+        }, 5000);
+        
+        // 구글맵 초기화 함수
+        function initMap() {
+            // 좌표 설정 (경기도 수원시 가상 좌표, 실제 장소로 변경 필요)
+            var location = {lat: 37.2664, lng: 127.0030};
+            
+            // 지도 생성
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: location
+            });
+            
+            // 마커 추가
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: '행복한 웨딩홀'
+            });
+        }
+    </script>
+</body>
+</html>
