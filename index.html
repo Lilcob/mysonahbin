@@ -4,252 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>우리 아기 첫 생일을 축하해주세요</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            /* 폰트 변경: 나눔명조, 바탕체 우선 사용 */
-            font-family: 'Nanum Myeongjo', Batang, serif;
+            /* 기본 폰트 변경: Noto Sans KR */
+            font-family: 'Noto Sans KR', sans-serif;
             margin: 0;
             padding: 0;
-            /* 배경색 변경: 부드러운 미색 (한지 느낌) */
-            background-color: #fdfbf5;
-            /* 기본 텍스트 색상 변경: 짙은 갈색 */
-            color: #4a3f35;
-            line-height: 1.7; /* 줄 간격 조정 */
+            /* 배경색 변경: 밝은 회색/거의 흰색 */
+            background-color: #f8f8f8;
+            /* 기본 텍스트 색상 변경: 진한 회색 */
+            color: #333;
+            line-height: 1.6;
         }
         .container {
             max-width: 500px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0; /* 컨테이너 자체 패딩 제거 */
             text-align: center;
-            /* 컨테이너 배경 및 테두리 추가 (옵션) */
-            background-color: #ffffff;
-            border: 1px solid #dcd0c0; /* 연한 갈색 테두리 */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 은은한 그림자 */
-        }
-        .header {
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee5d9; /* 구분선 추가 */
-            padding-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 26px; /* 제목 크기 조정 */
-            font-weight: 700;
-            /* 제목 색상 변경: 차분한 붉은 갈색 */
-            color: #a76f6f;
-            margin-bottom: 8px;
-        }
-        .header p {
-            font-size: 16px;
-            /* 부제목 색상 변경: 조금 더 연한 갈색 */
-            color: #7d6e60;
-            margin-top: 0;
-        }
-        .baby-info {
-            margin: 30px 0;
-            line-height: 1.8;
-        }
-        .baby-photo {
-            width: 100%;
-            max-width: 300px;
-            height: 300px;
-            /* 모서리 둥글림 감소 */
-            border-radius: 5px;
-            /* 그림자 대신 테두리 사용: 나무 액자 느낌 */
-            border: 4px solid #d2b48c; /* 황갈색 테두리 */
-            box-shadow: none; /* 기존 그림자 제거 */
-            margin: 20px auto;
-            object-fit: cover;
+            background-color: #ffffff; /* 내부 배경 흰색 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
-        /* 슬라이드쇼 스타일 */
-        .slideshow-container {
-            max-width: 300px;
-            position: relative;
-            margin: 20px auto;
+        /* --- 상단 섹션 시작 --- */
+        .invitation-top {
+            padding: 40px 20px 30px 20px; /* 상단 패딩 */
+            border-bottom: 1px solid #eee; /* 하단 구분선 */
+            margin-bottom: 30px; /* 하단 섹션과의 간격 */
         }
 
-        .mySlides {
-            display: none;
+        .top-illustration {
+            width: 150px; /* 이미지 크기에 맞게 조절 */
+            height: 50px; /* 이미지 크기에 맞게 조절 */
+            margin: 0 auto 30px auto;
+            background-image: url('YOUR_ILLUSTRATION_URL.png'); /* <<< 나뭇가지 이미지 URL 입력 */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* 이미지가 없을 경우 대비 - 임시 스타일 */
+            /* border-bottom: 1px solid #aaccaa; */
         }
 
-        .mySlides.active {
+        .vertical-title {
+            text-align: center;
+            margin: 30px 0 40px 0;
+            line-height: 1.6;
+            font-size: 24px; /* 글자 크기 */
+            color: #444;
+            font-weight: normal; /* 기본 두께 */
+            font-family: 'Nanum Myeongjo', serif; /* 제목 폰트 */
+        }
+        .vertical-title span {
+            display: block; /* 한 글자(단어)씩 줄바꿈 효과 */
+        }
+        .vertical-title .separator {
             display: block;
+            height: 1px; /* 구분선 두께 */
+            background-color: #ccc; /* 구분선 색상 */
+            width: 15px; /* 구분선 너비 */
+            margin: 10px auto; /* 위아래 간격 및 가운데 정렬 */
         }
 
-        /* 이전, 다음 버튼 */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 12px 16px; /* 패딩 조정 */
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            /* 모서리 둥글림 감소 */
-            border-radius: 3px;
-            user-select: none;
-            /* 버튼 배경색 변경: 반투명 짙은 갈색 */
-            background-color: rgba(74, 63, 53, 0.5);
+        .baby-photo-circular {
+            display: block;
+            margin: 30px auto 30px auto; /* 위아래 간격 증가 */
+            width: 180px; /* 사진 크기 */
+            height: 180px;
+            border-radius: 50%; /* 원형 만들기 */
+            object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+            border: 1px solid #eee; /* 얇은 테두리 */
         }
 
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev {
-            left: 0;
-            border-radius: 0 3px 3px 0;
-        }
-
-        .prev:hover, .next:hover {
-            /* 호버 시 배경색 변경 */
-            background-color: rgba(74, 63, 53, 0.8);
-        }
-
-        /* 인디케이터 점 */
-        .dot-container {
+        .intro-details {
             text-align: center;
-            margin: 8px 0;
+            font-size: 14px; /* 글자 크기 */
+            color: #777; /* 글자 색상 */
+            line-height: 1.7;
+            margin-top: 20px;
+        }
+        .intro-details p {
+            margin: 5px 0; /* 단락 간격 */
         }
 
-        .dot {
-            cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 2px;
-            /* 기본 점 색상 변경 */
-            background-color: #c1b7a
-            border-radius: 50%;
+        .parent-names {
+            text-align: center;
+            font-size: 14px; /* 글자 크기 */
+            color: #555; /* 글자 색상 */
+            margin-top: 30px; /* 위쪽 간격 */
+        }
+        .parent-names .deco-leaf {
+            /* 잎사귀 아이콘 - 실제 이미지나 아이콘 폰트로 대체 필요 */
             display: inline-block;
-            transition: background-color 0.6s ease;
+            width: 12px; /* 아이콘 크기 */
+            height: 20px;
+            background-color: #aaccaa; /* 임시 색상 */
+            margin: 0 10px;
+            vertical-align: middle;
+             /* 임시 스타일 */
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            opacity: 0.7;
         }
+         /* --- 상단 섹션 끝 --- */
 
-        .active-dot, .dot:hover {
-            /* 활성/호버 점 색상 변경: 제목과 동일한 색상 */
-            background-color: #a76f6f;
+
+        /* --- 하단 섹션 (기존 스타일 일부 유지 및 조정) --- */
+        .event-info, .map-container, .contact, .footer {
+             padding: 0 20px; /* 좌우 패딩 추가 */
         }
 
         .event-info {
-             /* 배경색 변경: 본문 배경과 동일하게 */
-            background-color: #fdfbf5;
-            padding: 20px;
-            /* 모서리 둥글림 감소 */
-            border-radius: 5px;
-            /* 그림자 대신 테두리 사용: 점선으로 변화 */
-            border: 1px dashed #dcd0c0;
-            box-shadow: none;
+            background-color: transparent; /* 배경 제거 */
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border: none; /* 테두리 제거 */
+            box-shadow: none; /* 그림자 제거 */
             margin: 30px 0;
+            text-align: center; /* 가운데 정렬 */
         }
         .event-info h2 {
-            font-size: 20px; /* 크기 조정 */
-            /* 제목 색상 변경: 헤더 제목과 통일 */
-            color: #a76f6f;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 18px; /* 크기 조정 */
+            color: #555; /* 색상 변경 */
+            margin-bottom: 20px;
+            font-weight: 500; /* 두께 조정 */
+            font-family: 'Noto Sans KR', sans-serif; /* 폰트 통일 */
         }
+         .event-info p {
+            font-size: 15px;
+            color: #333;
+            margin: 8px 0;
+         }
+
         .map-container {
             margin: 30px 0;
+            padding-bottom: 30px; /* 하단 패딩 추가 */
+            border-bottom: 1px solid #eee; /* 구분선 */
         }
-        /* iframe 지도용 스타일 */
+        .map-container h2 {
+             font-size: 18px; color: #555; margin-bottom: 15px; font-weight: 500;
+        }
         .map-container iframe {
-            /* 모서리 둥글림 감소 */
-            border-radius: 5px;
-            /* 테두리 추가 */
-            border: 1px solid #dcd0c0;
-            box-shadow: none; /* 그림자 제거 */
+            border-radius: 5px; /* 약간의 둥글림 */
+            border: 1px solid #eee; /* 테두리 */
+            box-shadow: none;
+            width: 100%; /* 너비 100% */
         }
+         .map-container p {
+            margin-top: 10px; font-size: 13px; color: #888;
+         }
+
         .contact {
             margin: 30px 0;
+            padding-bottom: 30px; /* 하단 패딩 추가 */
+             border-bottom: 1px solid #eee; /* 구분선 */
         }
         .btn {
             display: inline-block;
-            /* 버튼 배경색 변경: 차분한 붉은 갈색 */
-            background-color: #a76f6f;
+            /* 버튼 배경색 변경: 녹색 계열 */
+            background-color: #8cb38c;
             color: white;
-            padding: 10px 18px; /* 패딩 조정 */
+            padding: 10px 18px;
             text-decoration: none;
-            /* 모서리 둥글림 감소 */
-            border-radius: 5px;
+            border-radius: 5px; /* 약간의 둥글림 */
             margin: 10px 5px;
             font-size: 14px;
             transition: background-color 0.3s;
-            border: none; /* 테두리 제거 */
-            font-family: 'Nanum Myeongjo', Batang, serif; /* 버튼에도 폰트 적용 */
+            border: none;
+            font-family: 'Noto Sans KR', sans-serif; /* 버튼 폰트 */
+            font-weight: 400;
         }
         .btn:hover {
-            /* 호버 시 버튼 배경색 변경: 약간 더 진하게 */
-            background-color: #8f5c5c;
+            background-color: #749a74; /* 호버 시 약간 진하게 */
         }
+
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            font-size: 14px;
-            /* 텍스트 색상 변경: 더 연한 갈색 */
-            color: #7d6e60;
-            border-top: 1px solid #eee5d9; /* 구분선 추가 */
-        }
-        .decoration {
-            margin: 15px 0 25px 0; /* 마진 조정 */
-            font-size: 22px; /* 크기 조정 */
-            font-weight: bold;
-            color: #a76f6f; /* 색상 적용 */
+            margin-top: 0; /* 위쪽 마진 제거 */
+            padding-top: 30px;
+            padding-bottom: 40px; /* 하단 패딩 */
+            font-size: 13px; /* 글자 크기 */
+            color: #888; /* 글자 색상 */
+            border-top: none; /* 구분선 제거 */
+            line-height: 1.7;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="decoration">첫돌</div>
-            <h1>우리 아기 첫 생일을 축하해주세요</h1>
-            <p>소중한 분들을 아이의 첫 생일에 초대합니다</p>
+
+        <div class="invitation-top">
+            <div class="top-illustration"></div>
+
+            <div class="vertical-title">
+                <span>아빈이의</span>
+                <span>첫</span>
+                <span class="separator"></span>
+                <span>생일</span>
+            </div>
+
+            <img src="./images/image1.jpg" alt="아기 사진" class="baby-photo-circular">
+
+            <div class="intro-details">
+                <p>2025년 8월 9일 토요일 오전 11시</p>
+                <p>공간 채향</p>
+                <p style="font-size: 13px; color: #999;">(경기도 파주시 광탄면 소령원길 923)</p>
+            </div>
+
+            <div class="parent-names">
+                 <p>아빠 류태선 <span class="deco-leaf"></span> 엄마 김미연</p>
+            </div>
         </div>
-
-        <div class="baby-info">
-            <div class="slideshow-container">
-                <div class="mySlides active">
-                    <img src="./images/image1.jpg" alt="아기 사진 1" class="baby-photo">
-                </div>
-
-                <div class="mySlides">
-                    <img src="./images/image2.jpg" alt="아기 사진 2" class="baby-photo">
-                </div>
-
-                <div class="mySlides">
-                    <img src="./images/image3.jpg" alt="아기 사진 3" class="baby-photo">
-                </div>
-
-                <a class="prev" onclick="changeSlide(-1)">❮</a>
-                <a class="next" onclick="changeSlide(1)">❯</a>
-            </div>
-
-            <div class="dot-container">
-                <span class="dot active-dot" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-            </div>
-
-            <p><strong>아빈이</strong>의 첫 번째 생일을 맞이하여<br>
-            소중한 분들을 초대합니다.<br>
-            함께 축하해 주시면 감사하겠습니다.</p>
-            <p style="font-size: 14px; color: #7d6e60;">아빠 김철수 · 엄마 박영희 올림</p> </div>
-
         <div class="event-info">
             <h2>돌잔치 안내</h2>
-            <p><strong>날짜:</strong> 2025년 8월 9일 토요일</p>
-            <p><strong>시간:</strong> 오전 11시 </p>
-            <p><strong>장소:</strong> 공간 채향</p>
-            <p><strong>주소:</strong> 경기도 파주시 광탄면 소령원길 923</p>
+            <p><strong>날짜 :</strong> 2025년 8월 9일 토요일</p>
+            <p><strong>시간 :</strong> 오전 11시 </p>
+            <p><strong>장소 :</strong> 공간 채향</p>
         </div>
 
         <div class="map-container">
             <h2>오시는 길</h2>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.6142045056927!2d126.90272217641305!3d37.7756433121091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ceb006fc556d5%3A0xa887b3b074bfb996!2z6rO16rCE7LGE7Zal!5e0!3m2!1sko!2skr!4v1747032433527!5m2!1sko!2skr" width="100%" height="250" style="max-width: 100%; width: 100%; border:0; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <p style="margin-top: 10px; font-size: 14px; color: #7d6e60;">공간 채향 안쪽 한옥 공간</p>
+            <p>공간 채향 안쪽 한옥 공간</p>
         </div>
 
         <div class="contact">
@@ -258,53 +231,10 @@
         </div>
 
         <div class="footer">
-            <p>소중한 선물보다 따뜻한 마음과 축하 인사가 더 큰 기쁨이 됩니다.<br>
-            참석 여부를 미리 알려주시면 감사하겠습니다.</p>
+            <p>귀한 걸음 하시어<br>아빈이의 첫 생일을 함께 축하해주시면<br>더없는 기쁨으로 간직하겠습니다.</p>
+            <p style="margin-top:15px;">참석 여부를 미리 알려주시면<br>자리를 준비하는 데 큰 도움이 됩니다.</p>
         </div>
-    </div>
+        </div>
 
-    <script>
-        let slideIndex = 0;
-        const slides = document.getElementsByClassName("mySlides");
-        const dots = document.getElementsByClassName("dot");
-
-        function changeSlide(n) {
-            showSlide(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-        }
-
-        function showSlide(n) {
-            if (n >= slides.length) {slideIndex = 0}
-            if (n < 0) {slideIndex = slides.length - 1}
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-                dots[i].classList.remove("active-dot");
-            }
-
-            slides[slideIndex].classList.add("active");
-            dots[slideIndex].classList.add("active-dot");
-        }
-
-        // 자동 슬라이드 설정 (5초마다 변경)
-        let slideInterval = setInterval(function() {
-            changeSlide(1);
-        }, 5000);
-
-        // 슬라이드쇼 컨테이너에 마우스 올리면 자동 넘김 멈춤 (선택 사항)
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        slideshowContainer.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-        slideshowContainer.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(function() { changeSlide(1); }, 5000);
-        });
-
-        // 초기 슬라이드 표시
-        showSlide(slideIndex);
-    </script>
-</body>
+    </body>
 </html>
