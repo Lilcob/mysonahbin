@@ -7,191 +7,475 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            /* 기본 폰트 변경: Noto Sans KR */
-            font-family: 'Noto Sans KR', sans-serif;
             margin: 0;
-            padding: 0;
-            /* 배경색 변경: 밝은 회색/거의 흰색 */
-            background-color: #f8f8f8;
-            /* 기본 텍스트 색상 변경: 진한 회색 */
-            color: #333;
-            line-height: 1.6;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f1e8 0%, #ede7d8 100%);
+            font-family: 'Noto Sans KR', sans-serif;
+            min-height: 100vh;
         }
+
         .container {
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
-            padding: 0; /* 컨테이너 자체 패딩 제거 */
-            text-align: center;
-            background-color: #ffffff; /* 내부 배경 흰색 */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            background: linear-gradient(180deg, #faf8f3 0%, #f8f5f0 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
         }
 
-        /* --- 상단 섹션 시작 --- */
+        /* 전통 테두리 패턴 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #d4598f 0%, #6fa8dc 25%, #93c47d 50%, #ffd966 75%, #e06666 100%);
+            z-index: 10;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #d4598f 0%, #6fa8dc 25%, #93c47d 50%, #ffd966 75%, #e06666 100%);
+            z-index: 10;
+        }
+
+        /* 매화나무 가지 장식 */
+        .plum-branch {
+            position: absolute;
+            width: 120px;
+            height: 100px;
+        }
+
+        .plum-branch.left {
+            top: 20px;
+            left: -10px;
+            transform: rotate(-10deg);
+        }
+
+        .plum-branch.right {
+            top: 20px;
+            right: -10px;
+            transform: rotate(10deg) scaleX(-1);
+        }
+
+        /* 나뭇가지 */
+        .branch {
+            position: absolute;
+            background: #8b4513;
+        }
+
+        .main-branch {
+            width: 80px;
+            height: 4px;
+            top: 50px;
+            left: 10px;
+            border-radius: 2px;
+            transform: rotate(-15deg);
+        }
+
+        .sub-branch1 {
+            width: 35px;
+            height: 3px;
+            top: 30px;
+            left: 35px;
+            border-radius: 2px;
+            transform: rotate(25deg);
+        }
+
+        .sub-branch2 {
+            width: 25px;
+            height: 2px;
+            top: 65px;
+            left: 45px;
+            border-radius: 1px;
+            transform: rotate(-35deg);
+        }
+
+        .sub-branch3 {
+            width: 20px;
+            height: 2px;
+            top: 40px;
+            left: 60px;
+            border-radius: 1px;
+            transform: rotate(45deg);
+        }
+
+        /* 매화꽃 */
+        .plum-flower {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+        }
+
+        .plum-flower::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            top: 4px;
+            left: 4px;
+        }
+
+        .plum-flower::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: 
+                radial-gradient(circle at 2px 2px, #ffb5c5 1.5px, transparent 1.5px),
+                radial-gradient(circle at 10px 2px, #ffb5c5 1.5px, transparent 1.5px),
+                radial-gradient(circle at 6px 10px, #ffb5c5 1.5px, transparent 1.5px),
+                radial-gradient(circle at 2px 8px, #ffb5c5 1.5px, transparent 1.5px),
+                radial-gradient(circle at 10px 8px, #ffb5c5 1.5px, transparent 1.5px);
+        }
+
+        .flower1 { top: 25px; left: 45px; }
+        .flower2 { top: 45px; left: 25px; }
+        .flower3 { top: 35px; left: 65px; }
+        .flower4 { top: 60px; left: 50px; }
+        .flower5 { top: 20px; left: 30px; }
+
+        /* 매화 꽃봉오리 */
+        .plum-bud {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ff8fab;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+
+        .bud1 { top: 15px; left: 55px; }
+        .bud2 { top: 70px; left: 35px; }
+        .bud3 { top: 50px; left: 70px; }
+
+        /* 상단 섹션 */
         .invitation-top {
-            padding: 40px 20px 30px 20px; /* 상단 패딩 */
-            border-bottom: 1px solid #eee; /* 하단 구분선 */
-            margin-bottom: 30px; /* 하단 섹션과의 간격 */
+            position: relative;
+            padding: 40px 30px 30px;
+            text-align: center;
         }
 
-        .top-illustration {
-            width: 150px; /* 이미지 크기에 맞게 조절 */
-            height: 50px; /* 이미지 크기에 맞게 조절 */
-            margin: 0 auto 30px auto;
-            background-image: url('YOUR_ILLUSTRATION_URL.png'); /* <<< 나뭇가지 이미지 URL 입력 */
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            /* 이미지가 없을 경우 대비 - 임시 스타일 */
-            /* border-bottom: 1px solid #aaccaa; */
+        /* 첫돌 제목 스타일 */
+        .dol-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #8b4513;
+            margin: 20px 0 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .dol-title::before {
+            content: '첫돌';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff6b9d;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .dol-subtitle {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 14px;
+            color: #8b4513;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: inline-block;
         }
 
         .vertical-title {
             text-align: center;
             margin: 30px 0 40px 0;
-            line-height: 1.6;
-            font-size: 24px; /* 글자 크기 */
-            color: #444;
-            font-weight: normal; /* 기본 두께 */
-            font-family: 'Nanum Myeongjo', serif; /* 제목 폰트 */
-        }
-        .vertical-title span {
-            display: block; /* 한 글자(단어)씩 줄바꿈 효과 */
-        }
-        .vertical-title .separator {
-            display: block;
-            height: 1px; /* 구분선 두께 */
-            background-color: #ccc; /* 구분선 색상 */
-            width: 15px; /* 구분선 너비 */
-            margin: 10px auto; /* 위아래 간격 및 가운데 정렬 */
+            line-height: 1.8;
+            font-size: 28px;
+            color: #8b4513;
+            font-weight: 500;
+            font-family: 'Nanum Myeongjo', serif;
         }
 
+        .vertical-title span {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .vertical-title .separator {
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #93c47d, transparent);
+            width: 30px;
+            margin: 15px auto;
+            border-radius: 1px;
+        }
+
+        /* 아기 사진 */
         .baby-photo-circular {
             display: block;
-            margin: 30px auto 30px auto; /* 위아래 간격 증가 */
-            width: 180px; /* 사진 크기 */
+            margin: 30px auto;
+            width: 180px;
             height: 180px;
-            border-radius: 50%; /* 원형 만들기 */
-            object-fit: cover; /* 이미지 비율 유지하며 채우기 */
-            border: 1px solid #eee; /* 얇은 테두리 */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        /* 사진 주변 장식 */
+        .photo-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .photo-decoration::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #93c47d;
+            border-radius: 50% 0 50% 50%;
+            top: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+
+        .photo-decoration::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ffd966;
+            border-radius: 50% 50% 0 50%;
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(45deg);
         }
 
         .intro-details {
             text-align: center;
-            font-size: 14px; /* 글자 크기 */
-            color: #777; /* 글자 색상 */
-            line-height: 1.7;
+            font-size: 15px;
+            color: #8b4513;
+            line-height: 1.8;
             margin-top: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
         }
+
         .intro-details p {
-            margin: 5px 0; /* 단락 간격 */
+            margin: 8px 0;
         }
 
         .parent-names {
             text-align: center;
-            font-size: 14px; /* 글자 크기 */
-            color: #555; /* 글자 색상 */
-            margin-top: 30px; /* 위쪽 간격 */
+            font-size: 16px;
+            color: #8b4513;
+            margin-top: 30px;
+            font-family: 'Nanum Myeongjo', serif;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 20px;
         }
-        .parent-names .deco-leaf {
-            /* 잎사귀 아이콘 - 실제 이미지나 아이콘 폰트로 대체 필요 */
+
+        .deco-leaf {
             display: inline-block;
-            width: 12px; /* 아이콘 크기 */
+            width: 20px;
             height: 20px;
-            background-color: #aaccaa; /* 임시 색상 */
-            margin: 0 10px;
+            background: #93c47d;
+            margin: 0 15px;
             vertical-align: middle;
-             /* 임시 스타일 */
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            opacity: 0.7;
-        }
-         /* --- 상단 섹션 끝 --- */
-
-
-        /* --- 하단 섹션 (기존 스타일 일부 유지 및 조정) --- */
-        .event-info, .map-container, .contact, .footer {
-             padding: 0 20px; /* 좌우 패딩 추가 */
+            border-radius: 0 100% 0 100%;
+            transform: rotate(45deg);
+            opacity: 0.8;
         }
 
+        /* 이벤트 정보 */
         .event-info {
-            background-color: transparent; /* 배경 제거 */
-            padding-top: 20px;
-            padding-bottom: 20px;
-            border: none; /* 테두리 제거 */
-            box-shadow: none; /* 그림자 제거 */
-            margin: 30px 0;
-            text-align: center; /* 가운데 정렬 */
+            padding: 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+
         .event-info h2 {
-            font-size: 18px; /* 크기 조정 */
-            color: #555; /* 색상 변경 */
+            font-size: 20px;
+            color: #8b4513;
             margin-bottom: 20px;
-            font-weight: 500; /* 두께 조정 */
-            font-family: 'Noto Sans KR', sans-serif; /* 폰트 통일 */
+            font-weight: 500;
+            font-family: 'Nanum Myeongjo', serif;
         }
-         .event-info p {
+
+        .event-info p {
             font-size: 15px;
             color: #333;
-            margin: 8px 0;
-         }
+            margin: 10px 0;
+            line-height: 1.6;
+        }
 
+        /* 지도 */
         .map-container {
-            margin: 30px 0;
-            padding-bottom: 30px; /* 하단 패딩 추가 */
-            border-bottom: 1px solid #eee; /* 구분선 */
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .map-container h2 {
-             font-size: 18px; color: #555; margin-bottom: 15px; font-weight: 500;
-        }
-        .map-container iframe {
-            border-radius: 5px; /* 약간의 둥글림 */
-            border: 1px solid #eee; /* 테두리 */
-            box-shadow: none;
-            width: 100%; /* 너비 100% */
-        }
-         .map-container p {
-            margin-top: 10px; font-size: 13px; color: #888;
-         }
 
-        .contact {
-            margin: 30px 0;
-            padding-bottom: 30px; /* 하단 패딩 추가 */
-             border-bottom: 1px solid #eee; /* 구분선 */
+        .map-container h2 {
+            font-size: 20px;
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-align: center;
+            font-family: 'Nanum Myeongjo', serif;
         }
+
+        .map-container iframe {
+            border-radius: 10px;
+            border: 2px solid #f0f0f0;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container p {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* 연락처 버튼 */
+        .contact {
+            margin: 20px;
+            text-align: center;
+            padding: 20px;
+        }
+
         .btn {
             display: inline-block;
-            /* 버튼 배경색 변경: 녹색 계열 */
-            background-color: #8cb38c;
+            background: linear-gradient(135deg, #93c47d 0%, #7ba05b 100%);
             color: white;
-            padding: 10px 18px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 5px; /* 약간의 둥글림 */
-            margin: 10px 5px;
+            border-radius: 25px;
+            margin: 10px 8px;
             font-size: 14px;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            transition: all 0.3s ease;
             border: none;
-            font-family: 'Noto Sans KR', sans-serif; /* 버튼 폰트 */
-            font-weight: 400;
-        }
-        .btn:hover {
-            background-color: #749a74; /* 호버 시 약간 진하게 */
+            font-family: 'Noto Sans KR', sans-serif;
+            box-shadow: 0 4px 15px rgba(147, 196, 125, 0.3);
         }
 
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(147, 196, 125, 0.4);
+            background: linear-gradient(135deg, #7ba05b 0%, #93c47d 100%);
+        }
+
+        /* 푸터 */
         .footer {
-            margin-top: 0; /* 위쪽 마진 제거 */
-            padding-top: 30px;
-            padding-bottom: 40px; /* 하단 패딩 */
-            font-size: 13px; /* 글자 크기 */
-            color: #888; /* 글자 색상 */
-            border-top: none; /* 구분선 제거 */
-            line-height: 1.7;
+            margin: 20px;
+            padding: 30px 20px 40px;
+            font-size: 14px;
+            color: #8b4513;
+            line-height: 1.8;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        /* 하단 장식 */
+        .bottom-decoration {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 30px;
+            background-image: 
+                radial-gradient(circle at 15px 15px, #93c47d 2px, transparent 2px),
+                radial-gradient(circle at 30px 10px, #ffd966 2px, transparent 2px),
+                radial-gradient(circle at 45px 15px, #ff6b9d 2px, transparent 2px);
+            background-size: 15px 15px;
+            opacity: 0.6;
+        }
+
+        /* 반응형 */
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .dol-title {
+                font-size: 32px;
+            }
+            
+            .vertical-title {
+                font-size: 24px;
+            }
+            
+            .baby-photo-circular {
+                width: 160px;
+                height: 160px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- 매화나무 가지 장식 -->
+        <div class="plum-branch left">
+            <div class="branch main-branch"></div>
+            <div class="branch sub-branch1"></div>
+            <div class="branch sub-branch2"></div>
+            <div class="branch sub-branch3"></div>
+            <div class="plum-flower flower1"></div>
+            <div class="plum-flower flower2"></div>
+            <div class="plum-flower flower3"></div>
+            <div class="plum-bud bud1"></div>
+            <div class="plum-bud bud2"></div>
+        </div>
+        
+        <div class="plum-branch right">
+            <div class="branch main-branch"></div>
+            <div class="branch sub-branch1"></div>
+            <div class="branch sub-branch2"></div>
+            <div class="branch sub-branch3"></div>
+            <div class="plum-flower flower1"></div>
+            <div class="plum-flower flower2"></div>
+            <div class="plum-flower flower3"></div>
+            <div class="plum-bud bud1"></div>
+            <div class="plum-bud bud3"></div>
+        </div>
 
         <div class="invitation-top">
-            <div class="top-illustration"></div>
+            <div class="dol-title">첫돌</div>
+            <div class="dol-subtitle">첫 번째 생일을 축하합니다</div>
 
             <div class="vertical-title">
                 <span>아빈이의</span>
@@ -200,22 +484,26 @@
                 <span>생일</span>
             </div>
 
-            <img src="./images/image1.jpg" alt="아기 사진" class="baby-photo-circular">
+            <div style="position: relative; display: inline-block;">
+                <img src="./images/image1.jpg" alt="아기 사진" class="baby-photo-circular">
+                <div class="photo-decoration"></div>
+            </div>
 
             <div class="intro-details">
-                <p>2025년 8월 9일 토요일 오전 11시</p>
+                <p><strong>2025년 8월 9일 토요일 오전 11시</strong></p>
                 <p>공간 채향</p>
                 <p style="font-size: 13px; color: #999;">(경기도 파주시 광탄면 소령원길 923)</p>
             </div>
 
             <div class="parent-names">
-                 <p>아빠 류태선 <span class="deco-leaf"></span> 엄마 김미연</p>
+                <p>아빠 류태선 <span class="deco-leaf"></span> 엄마 김미연</p>
             </div>
         </div>
+
         <div class="event-info">
             <h2>돌잔치 안내</h2>
             <p><strong>날짜 :</strong> 2025년 8월 9일 토요일</p>
-            <p><strong>시간 :</strong> 오전 11시 </p>
+            <p><strong>시간 :</strong> 오전 11시</p>
             <p><strong>장소 :</strong> 공간 채향</p>
         </div>
 
@@ -234,7 +522,9 @@
             <p>귀한 걸음 하시어<br>아빈이의 첫 생일을 함께 축하해주시면<br>더없는 기쁨으로 간직하겠습니다.</p>
             <p style="margin-top:15px;">참석 여부를 미리 알려주시면<br>자리를 준비하는 데 큰 도움이 됩니다.</p>
         </div>
-        </div>
 
-    </body>
+        <!-- 하단 장식 -->
+        <div class="bottom-decoration"></div>
+    </div>
+</body>
 </html>
