@@ -272,32 +272,32 @@
 
         /* 유튜브 영상 컨테이너 */
         .video-container {
-            margin: 40px 30px 80px;
-            padding: 40px 20px;
+            margin: 40px 0 80px;
+            padding: 60px 10px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
+            width: 100%;
         }
 
         .video-container h3 {
             font-family: 'Nanum Myeongjo', serif;
-            font-size: 18px;
+            font-size: 24px;
             color: #8b4513;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
             font-weight: 500;
         }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 비율 */
+            padding-bottom: 150%; /* 훨씬 큰 높이 */
             height: 0;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: scale(2.2);
-            margin: 60px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         .video-wrapper iframe {
@@ -484,13 +484,18 @@
             }
 
             .video-container {
-                margin: 30px 15px 60px;
-                padding: 30px 15px;
+                margin: 30px 0 60px;
+                padding: 40px 5px;
             }
 
             .video-wrapper {
-                transform: scale(1.8);
-                margin: 40px 0;
+                padding-bottom: 120%;
+                border-radius: 10px;
+            }
+
+            .video-container h3 {
+                font-size: 20px;
+                margin-bottom: 30px;
             }
         }
     </style>
@@ -575,8 +580,8 @@
         </div>
 
         <div class="contact">
-            <a href="tel:010-1234-5678" class="btn">어머니께 연락하기</a>
-            <a href="tel:010-8765-4321" class="btn">아버지께 연락하기</a>
+            <a href="tel:010-9157-5318" class="btn">어머니께 연락하기</a>
+            <a href="tel:010-4491-7600" class="btn">아버지께 연락하기</a>
         </div>
 
         <div class="footer">
